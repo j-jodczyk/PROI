@@ -1,3 +1,6 @@
+// kompilacja wykonana w srodowisku Windows i Linux GCC
+
+
 #include <iostream>
 #include <cfloat>
 #include "Player.h"
