@@ -1,17 +1,18 @@
 #include <iostream>
+#include <cfloat>
 #include "Player.h"
 
 
-int main() 
+int main()
 {
 #ifdef _DEBUG
 	std::cout << "Hello" << std::endl;
-#endif 
+#endif
 
 	Player player1;
 
-	// player1.age; - C2248 error próba dostêpu do prywatnego atrybutu klasy Player
-	// b³¹d wykryty podczas kompilacji, wiêc program siê nie uruchomi
+	// player1.age; - C2248 error prï¿½ba dostï¿½pu do prywatnego atrybutu klasy Player
+	// bï¿½ï¿½d wykryty podczas kompilacji, wiï¿½c program siï¿½ nie uruchomi
 
 	player1.setAge(26);
 	player1.setNumber(13);
@@ -19,9 +20,9 @@ int main()
 
 	Player player2;
 	player2.info();
-	
+
 	// x = 5;  C2065 error undelared identifier; niezadeklarowany identyfikator,
-	// b³¹d wykryty podczas kompilacji
+	// bï¿½ï¿½d wykryty podczas kompilacji
 
 	/*
 	*char finished = 'y';
@@ -30,9 +31,9 @@ int main()
 	*	std::cout << "continue? (y/n)" << std::endl;
 	*	std::cin >> finished;
 	*}
-	* C6282 warning, przypisanie sta³ej w kontekœcie Boolean, program siê uruchomi, 
-	* ale pêtla bêdzie wykonywana w nieskoñczonoœæ
-	*/ 
+	* C6282 warning, przypisanie staï¿½ej w kontekï¿½cie Boolean, program siï¿½ uruchomi,
+	* ale pï¿½tla bï¿½dzie wykonywana w nieskoï¿½czonoï¿½ï¿½
+	*/
 
 	float bank_balance{ FLT_MAX };
 	std::cout.precision(2);
