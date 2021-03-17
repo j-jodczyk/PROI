@@ -16,7 +16,7 @@ public:
 	const int& getNumber() const { return number; }
 	const int& getAge() const { return age; }
 
-	void setNumber(const int name);
+	void setNumber(const int number);
 
 	void setAge(const int age);
 
