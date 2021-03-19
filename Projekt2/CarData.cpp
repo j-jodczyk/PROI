@@ -9,20 +9,26 @@ int averagePrice(CarData& c)
 
 std::istream& operator>> (std::istream& is, const CarData& c)
 {
-	/*Chart new_c;
-	*if (is >> std::ws && std::getline(is, new_c->brandVersion) && is >> new_c->price >> new_c->soldMonth)
-	*{
-	*	c = new_c;
-	*}*/
+	char ch;
+	std::string brand;
+	std::string	version;
+	while (is.get(ch) && ch != ' ')
+		brand += ch;
+	
+
+
 	return is;
 }
 
-std::ostream& operator<< (std::ostream& os, const CarData& c)
+std::ostream& operator<< (std::ostream& os, const Chart& c)
 {
-	os << c.brandVersion << "	" << c.price;
-	for (int i = 0; i < 12; i++)
+	for (CarData cd : c)
 	{
-		os << "	" << c.soldMonth[i];
+		os << cd.brandVersion << "  " << cd.price;
+		for (int i = 0; i < 12; i++)
+		{
+			os << "  " << cd.soldMonth[i];
+		}
 	}
 	return os;
 }

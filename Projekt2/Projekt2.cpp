@@ -7,42 +7,58 @@
 #include "CarData.h"
 
 
+std::string Abbrev(CarData cd);
+
+int averagePrice(Chart c);
+
+
 int main()
 {
-    /*std::ifstream infile;
-    infile.open("Tekst.txt"); // figure out how to give this file as argument to program
+    
+    Chart c{ { "Toyota  Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} }, {"Toyota  Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} } };
+    
+    std::cout << Abbrev(c[0]) << std::endl;
 
-    std::vector<Chart> v;
-
-    if (infile.fail())
-    {
-        std::cout << "Failed to open file";
-    }
-    else {
-        for (Chart c; infile >> c;)
-        {
-            v.push_back(c);
-            infile.close();
-        }
-        for (auto const& c : v)
-        {
-            std::cout << c;
-        }
-    }
-    */
-    CarData c{ "Toyota	Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} };
-    std::cout << c;
+    std::cout << averagePrice(c);
 
     return 0;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
 
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
+std::string Abbrev(CarData cd)
+{
+    std::string abbrev;
+    abbrev += cd.brandVersion.substr(0, 2);
+    for (int i = 0; i < cd.brandVersion.length(); ++i)
+    {
+        if (cd.brandVersion[i] == ' ')
+        {
+            abbrev += cd.brandVersion.substr(i + 2, 2);
+            break;
+        }
+    }
+
+    for (int i = 0; i < abbrev.length(); ++i)
+    {
+        abbrev[i] = toupper(abbrev[i]);
+    }
+    return abbrev;
+}
+
+int averagePrice(Chart c)
+{
+    int avarage{ 0 };
+    int sum{ 0 };
+    int count{ 0 };
+
+    for (int i = 0; i < 20; ++i)
+    {
+        if (c[i].brandVersion != "\0")
+        {
+            sum += c[i].price;
+            count++;
+        }
+    }
+    avarage = sum / count;
+    return avarage;
+}
