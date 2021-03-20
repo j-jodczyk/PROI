@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 struct CarData
 {
@@ -16,7 +17,12 @@ typedef CarData Chart[20];
 int averagePrice(CarData& c);
 
 
-std::istream& operator>> (std::istream& is, const CarData& c);
+std::istream& operator>> (std::istream& is, const Chart& c);
 
 std::ostream& operator<< (std::ostream& os, const Chart& c);
+
+std::string Abbrev(CarData cd);
+
+int averagePrice(Chart c);
+
 
