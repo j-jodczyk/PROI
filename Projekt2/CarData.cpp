@@ -30,12 +30,10 @@ std::istream& operator>> (std::istream& is, Chart& c)
         CarData cd;
         cd.brandVersion = dataVector[0] + "  " + dataVector[1];
         cd.price = std::stoi(dataVector[2]);
-        std::vector<int> soldMonthV;
         for (int i = 3; i < 15; ++i)
         {
-            soldMonthV.push_back(std::stoi(dataVector[i]));
+            cd.soldMonth[i - 3] = std::stoi(dataVector[i]);
         }
-        std::copy(soldMonthV.begin(), soldMonthV.end(), cd.soldMonth);
         c[i] = cd;
     }
         
