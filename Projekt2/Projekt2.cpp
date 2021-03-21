@@ -58,36 +58,39 @@ void drawChart(Chart c)
         }
         carsSold.push_back(monthlySold);
     }
-
-    std::cout << "s l m k m c l s w p l g" <<std::endl;
+ 
 
     for (int i = 0; i < carsSold.size(); ++i)
         std::cout << carsSold[i] << ' ';
     std::cout << std::endl;
     int size = biggestInV(carsSold);
+    std::vector<std::vector<char>> chart;
     for (int i = 0; i < size; ++i)
     {
-        char arr[12];
+        std::vector<char> line;
         for (int j = 0; j < 12; ++j)
         {   
             if (carsSold[j] != 0)
             {
-                arr[j] = '#';
+                line.push_back('#');
                 carsSold[j] -= 1;
             }
             else
-                arr[j] = ' ';
+                line.push_back(' ');
         }
-        for (int z = 0; z < 12; ++z)
-            std::cout << arr[z] << ' ';
-        std::cout << std::endl;
+        chart.push_back(line);
+        //for (int z = 0; z < 12; ++z)
+            //std::cout << arr[z] << ' ';
+        //std::cout << std::endl;
     }
 
-    for (int i = 0; i < carsSold.size(); ++i)
-        std::cout << carsSold[i] << ' ';
-    std::cout << std::endl;
-
-    
+    for (int i = chart.size() - 1; i >= 0; --i)
+    {
+       for (int z = 0; z < 12; ++z)
+            std::cout << chart[i][z] << ' ';
+        std::cout << std::endl;
+    }
+    std::cout << "s l m k m c l s w p l g" << std::endl;
 }
 
 
