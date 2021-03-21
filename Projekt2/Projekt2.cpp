@@ -21,12 +21,13 @@ int main(int argc, char *argv[])
         {"Opel  Adam", 43300, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }} };
     
     //std::cout << Abbrev(c[0]) << std::endl;
-    writeDeflection(filename, c);
+    //writeDeflection(filename, c);
     //std::cout << averagePrice(c);
     Chart s;
-    std::cin >> s;
-    
-    drawChart(c);
+    std::ifstream file(argv[1]);
+    file >> s;
+    std::cout << s;
+    drawChart(s);
     
 
     return 0;
