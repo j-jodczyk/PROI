@@ -7,14 +7,17 @@ int averagePrice(CarData& c)
 }
 
 
-std::istream& operator>> (std::istream& is, const Chart& c)
+std::istream& operator>> (std::istream& is, Chart& c)
 {
-    std::string data; 
+    std::string data;
     std::string delim = "  ";
     std::vector<std::string> dataVector;
-    std::vector<CarData> ChartV;
-    while (std::getline(is, data))
+    
+    for (int i = 0; i < 20; i++)
     {
+        std::getline(is, data);
+        if (data == "\0")
+            break;
         size_t start = 0;
         size_t end = 0;
 
@@ -33,12 +36,9 @@ std::istream& operator>> (std::istream& is, const Chart& c)
             soldMonthV.push_back(std::stoi(dataVector[i]));
         }
         std::copy(soldMonthV.begin(), soldMonthV.end(), cd.soldMonth);
-        ChartV.push_back(cd);
+        c[i] = cd;
     }
-    
-    //std::copy(ChartV.begin(), ChartV.end(), c);
-    //is >> c;
-
+        
 	return is;
 }
 
@@ -46,11 +46,14 @@ std::ostream& operator<< (std::ostream& os, const Chart& c)
 {
 	for (CarData cd : c)
 	{
+        if (cd.brandVersion == "\0")
+            break;
 		os << cd.brandVersion << "  " << cd.price;
 		for (int i = 0; i < 12; i++)
 		{
 			os << "  " << cd.soldMonth[i];
 		}
+        os << std::endl;
 	}
 	return os;
 }

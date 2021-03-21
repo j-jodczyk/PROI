@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
     //std::cout << Abbrev(c[0]) << std::endl;
     writeDeflection(filename, c);
     //std::cout << averagePrice(c);
+    Chart s;
+    std::cin >> s;
     
     drawChart(c);
     

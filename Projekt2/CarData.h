@@ -17,7 +17,7 @@ typedef CarData Chart[20];
 int averagePrice(CarData& c);
 
 
-std::istream& operator>> (std::istream& is, const Chart& c);
+std::istream& operator>> (std::istream& is, Chart& c);
 
 std::ostream& operator<< (std::ostream& os, const Chart& c);
 
