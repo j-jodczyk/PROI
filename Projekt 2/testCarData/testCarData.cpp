@@ -10,6 +10,27 @@ namespace testCarData
 	{
 	public:
 
+		TEST_METHOD(test_no_data_constructor)
+		{
+			CarData c;
+			std::string n = "";
+			Assert::AreEqual(n, c.brandVersion);
+			Assert::AreEqual(0, c.price);
+			Assert::AreEqual(0, c.soldMonth[0]);
+		}
+
+
+		TEST_METHOD(test_bad_data_constructor)
+		{
+			std::string name { "Toyota	Aygo"};
+			int t1[12] = { 400, 5, 6, 7, -8, 9, 12, 2, 3, 6, 8, 9 };
+			int p = 150000;
+			CarData cd(name, p, t1);
+			Assert::AreEqual(100000, cd.price);
+			Assert::AreEqual(100, cd.soldMonth[0]);
+			Assert::AreEqual(0, cd.soldMonth[4]);
+		}
+
 		TEST_METHOD(test_input)
 		{
 			Chart c;
@@ -25,7 +46,7 @@ namespace testCarData
 		{
 			std::ostringstream out;
 			CarData cd;
-			cd.brandVersion = "Toyota Aygo";
+			cd.brandVersion = "Toyota	Aygo";
 			cd.price = 34900;
 			int table[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
 			for (int i = 0; i < 12; ++i) 
@@ -39,7 +60,7 @@ namespace testCarData
 		TEST_METHOD(test_Abbrev)
 		{
 			CarData cd;
-			cd.brandVersion = "Toyota Aygo";
+			cd.brandVersion = "Toyota	Aygo";
 			cd.price = 34900;
 			int table[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
 			for (int i = 0; i < 12; ++i)
@@ -51,7 +72,7 @@ namespace testCarData
 
 		TEST_METHOD(test_deflection)
 		{
-			std::string name[3] = { "Toyota Aygo", "Opel Adam", "Fiat 500"};
+			std::string name[3] = { "Toyota	Aygo", "Opel	Adam", "Fiat	500"};
 			int t1[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
 			int t2[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 			int t3[12] = { 1, 2, 3, 4, 5, 6, 3, 2, 4, 23, 2, 23 };
