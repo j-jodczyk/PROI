@@ -135,9 +135,6 @@ void drawChart(Chart c)
         carsSold.push_back(monthlySold);
     }
 
-
-    for (int i = 0; i < carsSold.size(); ++i)
-        std::cout << carsSold[i] << ' ';
     std::cout << std::endl;
     int size = biggestInV(carsSold);
     std::vector<std::vector<char>> chart;
@@ -161,6 +158,10 @@ void drawChart(Chart c)
     {
         for (int z = 0; z < 12; ++z)
             std::cout << chart[i][z] << ' ';
+        if ((i+1) % 10 == 0)
+        {
+            std::cout << i+1;
+        }
         std::cout << std::endl;
     }
     std::cout << "s l m k m c l s w p l g" << std::endl;
