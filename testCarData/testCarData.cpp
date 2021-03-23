@@ -12,7 +12,13 @@ namespace testCarData
 
 		TEST_METHOD(test_input)
 		{
-			// i dont know what to do
+			Chart c;
+			std::string c_str = "Toyota	Aygo	34900	4	5	6	7	8	9	12	2	3	6	8	9\n";
+			std::istringstream in(c_str);
+			in >> c;
+			Assert::AreEqual(c->price, 34900);
+			std::string brandV = "Toyota	Aygo";
+			Assert::AreEqual(c->brandVersion, brandV);
 		}
 
 		TEST_METHOD(test_output)
