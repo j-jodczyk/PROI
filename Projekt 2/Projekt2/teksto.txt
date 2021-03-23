@@ -1,4 +1,4 @@
-TOAY : -8000
+Average price of cars : 42900TOAY : -8000
 OPAD : 400
 RETW : -7000
 VOUP : -8500
