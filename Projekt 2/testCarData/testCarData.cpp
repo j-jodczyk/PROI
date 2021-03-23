@@ -24,7 +24,13 @@ namespace testCarData
 		TEST_METHOD(test_output)
 		{
 			std::ostringstream out;
-			Chart c{ { "Toyota	Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} } };
+			CarData cd;
+			cd.brandVersion = "Toyota Aygo";
+			cd.price = 34900;
+			int table[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
+			for (int i = 0; i < 12; ++i) 
+				cd.soldMonth[i] = table[i];
+			Chart c = {cd};
 			out << c;
 			std::string c_str = "Toyota	Aygo	34900	4	5	6	7	8	9	12	2	3	6	8	9\n";
 			Assert::AreEqual(out.str(), c_str);
@@ -32,7 +38,12 @@ namespace testCarData
 
 		TEST_METHOD(test_Abbrev)
 		{
-			CarData cd = { "Toyota	Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} };
+			CarData cd;
+			cd.brandVersion = "Toyota Aygo";
+			cd.price = 34900;
+			int table[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
+			for (int i = 0; i < 12; ++i)
+				cd.soldMonth[i] = table[i];
 			std::string abbrev = "TOAY";
 			Assert::AreEqual(abbrev, Abbrev(cd));
 		}
@@ -40,17 +51,27 @@ namespace testCarData
 
 		TEST_METHOD(test_deflection)
 		{
-			Chart c{ { "Toyota  Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} },
-					 {"Opel	Adam", 43300, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 } },
-					 {"Fiat	500", 41900, {1, 2, 3, 4, 5, 6, 3, 2, 4, 23, 2, 23}} };
+			std::string name[3] = { "Toyota Aygo", "Opel Adam", "Fiat 500"};
+			int t1[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
+			int t2[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+			int t3[12] = { 1, 2, 3, 4, 5, 6, 3, 2, 4, 23, 2, 23 };
+ 			int price[3] = { 34900, 43300, 41900 };
+			Chart c{ CarData(name[0], price[0], t1), 
+					 CarData(name[1], price[1], t2), 
+					 CarData(name[2], price[2], t3)};
 			Assert::AreEqual(-5133, deflection(c, 0));
 		}
 
 		TEST_METHOD(test_averagePrice)
 		{
-			Chart c{ { "Toyota  Aygo", 34900, {4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9} },
-					 {"Opel	Adam", 43300, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 } },
-					 {"Fiat	500", 41900, {1, 2, 3, 4, 5, 6, 3, 2, 4, 23, 2, 23}} };
+			std::string name[3] = { "Toyota Aygo", "Opel Adam", "Fiat 500" };
+			int t1[12] = { 4, 5, 6, 7, 8, 9, 12, 2, 3, 6, 8, 9 };
+			int t2[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+			int t3[12] = { 1, 2, 3, 4, 5, 6, 3, 2, 4, 23, 2, 23 };
+			int price[3] = { 34900, 43300, 41900 };
+			Chart c{ CarData(name[0], price[0], t1),
+					 CarData(name[1], price[1], t2),
+					 CarData(name[2], price[2], t3) };
 			int average = 40033;
 			Assert::AreEqual(average, averagePrice(c));
 		}
