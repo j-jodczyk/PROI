@@ -1,5 +1,35 @@
 #include "CarData.h"
 
+CarData::CarData()
+{
+    brandVersion = "";
+    price = 0;
+    for (int i = 0; i < 12; ++i)
+        soldMonth[i] = 0;
+}
+
+CarData::CarData(std::string &bv, int &p, int sm[12])
+{
+    brandVersion = bv;
+
+    if (p < 0)
+        price = 0;
+    else if (p > 100000)
+        price = 10000;
+    else
+        price = p;
+    
+    for (int i = 0; i < 12; ++i)
+    {
+        if (sm[i] < 0)
+            soldMonth[i] = 0;
+        else if (sm[i] > 100)
+            soldMonth[i] = 100;
+        else
+            soldMonth[i] = sm[i];
+    }
+}
+
 
 std::istream& operator>> (std::istream& is, Chart& c)
 {
