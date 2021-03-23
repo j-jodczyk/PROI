@@ -7,9 +7,9 @@
 
 struct CarData
 {
-	std::string brandVersion;				// dwa slowa zaczynajace sie duza litera
-	int price;							 // przedzial 1...100 0000
-	int soldMonth[12];				// przedzial 1...100
+	std::string brandVersion;
+	int price;			
+	int soldMonth[12];
 	CarData();
 	CarData(std::string& bv, int& p, int sm[12]);
 };

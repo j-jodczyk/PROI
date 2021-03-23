@@ -15,7 +15,7 @@ CarData::CarData(std::string &bv, int &p, int sm[12])
     if (p < 0)
         price = 0;
     else if (p > 100000)
-        price = 10000;
+        price = 100000;
     else
         price = p;
     
