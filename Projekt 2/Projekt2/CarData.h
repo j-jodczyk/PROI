@@ -22,6 +22,8 @@ std::string Abbrev(CarData cd);
 
 int averagePrice(Chart c);
 
+int deflection(Chart c, int index);
+
 void writeDeflection(std::string filename, Chart c);
 
 void drawChart(Chart c);

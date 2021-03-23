@@ -100,14 +100,21 @@ int averagePrice(Chart c)
 }
 
 
+int deflection(Chart c, int index)
+{
+    return c[index].price - averagePrice(c);
+}
+
+
 void writeDeflection(std::string filename, Chart c)
 {
     std::ofstream MyFile(filename);
+    MyFile << "Average price of cars : " << averagePrice(c);
     for (int i = 0; i < 20; ++i)
     {
         if (c[i].brandVersion == "\0")
             break;
-        MyFile << Abbrev(c[i]) << " : " << c[i].price - averagePrice(c) << std::endl;
+        MyFile << Abbrev(c[i]) << " : " << deflection(c, i) << std::endl;
     }
     MyFile.close();
 }
