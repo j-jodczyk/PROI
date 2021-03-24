@@ -14,4 +14,6 @@ Program:
 
 Testy - w folderze testCarData, zrobione przy użyciu CppUnitTest
 
+Kompilacja w Windows i Linux
+
 
